@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            /* background-color: skyblue; */
+            /* Set the background color to skyblue */
+            padding-top: 50px;
+            padding: 50px;
+        }
+
+        .about-section {
+            padding: 50px;
+            text-align: center;
+            background-color: #474e5d;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        .content-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 50px);
+            /* Adjusted height to fit the content */
+        }
+
+        .flattened-image {
+            width: 555px;
+            /* Set the width to match the image */
+            height: 591px;
+            /* Set the height to match the image */
+            border-radius: 8px;
+            /* Added border-radius for a subtle rounded effect */
+            overflow: hidden;
+            margin-right: 40px;
+            /* Increased margin for spacing */
+            opacity: 0;
+            animation: slideInTop 1s ease-in-out 0.5s forwards, fadeIn 1s ease-in-out 0.5s forwards;
+        }
+
+        .flattened-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card {
+            width: 600px;
+            /* Increased width */
+            height: 550px;
+            /* Increased height */
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            opacity: 0;
+            animation: slideInCenter 1s ease-in-out forwards;
+        }
+
+        .card-header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            /* Increased font size */
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .mission-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            padding: 20px;
+            /* Adjusted margin for spacing */
+        }
+
+        .mission-card {
+            /* width: 600px; */
+            /* Increased width */
+            height: 550px;
+            /* Increased height */
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            /* overflow: hidden; */
+            margin-right: 20px;
+            opacity: 0;
+            animation: slideInLeft 1s ease-in-out forwards;
+        }
+
+        .mission-card-header {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .mission-card-body {
+            padding: 20px;
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .mission-video-container {
+            width: 750px;
+            /* Adjusted width */
+            height: 420px;
+            /* Adjusted height */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 50px;
+            /* Adjusted margin-top to shift the video down */
+            scroll-margin-left: 80px;
+            /* Adjusted margin-left to shift the video to the left */
+        }
+
+        .mission-video {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            opacity: 0;
+            animation: slideInRight 1s ease-in-out forwards;
+        }
+
+        .mission-video iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .vision-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            /* Adjusted margin for spacing */
+        }
+
+        .vision-card {
+            width: 600px;
+            /* Increased width */
+            height: 500px;
+            /* Increased height */
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            opacity: 0;
+            animation: slideInLeftTwo 1s ease-in-out forwards;
+        }
+
+        .vision-card-header {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .vision-card-body {
+            padding: 20px;
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .vision-video-container {
+            width: 750px;
+            /* Adjusted width */
+            height: 420px;
+            /* Adjusted height */
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-start;
+            /* Adjusted to place video on the left */
+            align-items: flex-start;
+            margin-top: 50px;
+            /* Adjusted margin-top to shift the video down */
+            scroll-margin-left: 80px;
+            /* Adjusted margin-left to shift the video to the left */
+        }
+
+        .vision-video-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            opacity: 0;
+            animation: slideInLeftTwo 1s ease-in-out forwards;
+        }
+
+        .vision-video- iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInTop {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInCenter {
+            0% {
+                opacity: 0;
+                transform: translateY(-50%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Animation for the Vision card and video */
+        @keyframes slideInLeftTwo {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRightTwo {
+            0% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $('#header').load('header.html');
+
+        });
+        $(function () {
+            $('#footer').load('footer.html');
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="about-section">
+        <h1>About Us Page</h1>
+        <p>"Embark on a journey with us at SparkMind Tech, where innovation meets passion. We are dedicated to shaping
+            digital excellence, empowering businesses, and inspiring the next generation of tech leaders. Join us in
+            creating a dynamic and technologically empowered tomorrow"</p>
+    </div>
+
+    <div class="content-container">
+        <div class="flattened-image">
+            <img src="https://i.ibb.co/NFwGT3z/Sujan-Bhai.png" alt="Sujan-Bhai" border="0" />
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Director's Message
+            </div>
+            <div class="card-body">
+                <p>
+                    "At SparkMind Tech, our mission is to be the driving force behind technological advancement,
+                    creating a digital landscape where innovation knows no bounds. We aspire to be the go-to partner for
+                    cutting-edge solutions, setting new standards in digital excellence. Through strategic expertise in
+                    digital marketing, web design, software development, and IT infrastructure, we envision businesses
+                    thriving in a dynamic and interconnected world."
+                </p>
+                <p>
+                    "Committed to youth empowerment, our vision extends to inspiring and cultivating the next generation
+                    of tech leaders. SparkMind Tech is not just a service provider; it's a catalyst for a future where
+                    technology transforms lives and businesses on a global scale."
+                </p>
+                <p>
+                    "Our commitment to excellence is unwavering, and we strive to push the boundaries of innovation.
+                    Join us on this exciting journey as we revolutionize the tech industry and leave an indelible mark
+                    on the world."
+                </p>
+            </div>
+            <div class="card-footer">
+                SparkMind Tech
+            </div>
+        </div>
+    </div>
+
+    <div class="mission-container">
+        <div class="mission-card">
+            <div class="card">
+                <div class="card-header">
+                    Our Mission
+                </div>
+                <div class="card-body">
+                    <p>
+                        "SparkMind Tech is on a mission to empower businesses and individuals through cutting-edge
+                        technology solutions. Our journey is guided by a commitment to excellence, creativity, and
+                        integrity, setting us apart in the ever-evolving tech landscape."
+                    </p>
+                    <p>
+                        "We strive to provide innovative and tailored digital experiences that not only drive growth and
+                        success for our clients but also positively impact society. Our belief in the transformative
+                        power of technology fuels our dedication to creating a brighter, technologically advanced future
+                        for all."
+                    </p>
+                    <p>
+                        "At SparkMind Tech, our diverse team of experts is dedicated to delivering solutions that make a
+                        meaningful impact. Beyond business success, our mission extends to fostering a culture of
+                        learning, collaboration, and community impact. Join us in our mission to shape the future of
+                        technology and create lasting value for businesses and society alike."
+                    </p>
+                </div>
+                <div class="card-footer">
+                    SparkMind Tech
+                </div>
+            </div>
+        </div>
+
+        <div class="mission-video-container">
+            <div style="position:relative; width:100%; height:0px; padding-bottom:56.250%"><iframe allow="fullscreen"
+                    allowfullscreen height="100%" src="https://streamable.com/e/amqaw9?nocontrols=1" width="100%"
+                    style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="vision-container">
+        <div class="mission-video-container">
+            <div style="position:relative; width:100%; height:0px; padding-bottom:56.250%"><iframe allow="fullscreen"
+                    allowfullscreen height="100%" src="https://streamable.com/e/amqaw9?nocontrols=1" width="100%"
+                    style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;"></iframe>
+            </div>
+        </div>
+        <div class="mission-card">
+            <div class="card">
+                <div class="card-header">
+                    Our Vision
+                </div>
+                <div class="card-body">
+                    <p>
+                        "At SparkMind Tech, our vision is to be a global leader in technology, driving positive change
+                        through innovation and empowerment. Our vision encompasses striving for Innovation Excellence by
+                        being at the forefront of technological advancements, sparking innovation globally.
+                    </p>
+                    <p>
+                        We envision Empowering Future Leaders through impactful youth empowerment programs, fostering
+                        the next generation of tech visionaries. Serving as a hub for Strategic Business Success, we
+                        power businesses with cutting-edge, strategic digital solutions.
+                    </p>
+                    <p>
+                        Embarking on a dynamic tech journey, we transcend traditional services, charting a course
+                        towards a future empowered by technology. Our vision extends to global tech influence,
+                        catalyzing transformation on a global scale in technology and youth empowerment, leaving a
+                        lasting impact.
+                </div>
+                <div class="card-footer">
+                    SparkMind Tech
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div id="footer"></div>
+</body>
+
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacancy & Internship</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            padding: 20px;
+            background-color: #dfeeff;
+        }
+
+        .container-vacancy {
+            margin-top: 30px;
+            padding: 50px;
+            padding-top: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+
+        .intern-img {
+            height: auto;
+            width: 36vw;
+        }
+
+        .intern-button {
+            background-color: #155175 !important;
+            color: white !important;
+            border-radius: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .intern-button:hover {
+            background-color: rgb(0, 255, 170) !important;
+            color: black !important;
+        }
+
+        .row p {
+            width: fit-content;
+        }
+
+        .row {
+            height: fit-content;
+            width: 95%;
+            margin: auto;
+        }
+
+        section {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* padding: 20px; */
+        }
+
+        .title {
+            font-size: 3rem;
+            margin: 2rem;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        .job {
+            margin-top: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #000;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .job-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #155175;
+        }
+
+        .job-title h3 {
+            font-size: 1.8rem;
+        }
+
+        .job-description {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 2s ease;
+            /* text-align: left; */
+        }
+
+        .job-description p {
+            padding-top: 1rem;
+            line-height: 1.6;
+            font-size: 1.4rem;
+            text-align: justify;
+
+        }
+
+        .job-description ol li {
+            text-align: left;
+        }
+
+        .job-apply-button {
+            /* background-color: transparent; */
+            border-radius: 20px;
+        }
+
+        .job-apply-button:hover {
+            background-color: transparent;
+            border-radius: 20px;
+            color: black;
+        }
+
+        .job.active .job-description {
+            max-height: 300px;
+            animation: fade 1s ease-in-out;
+            cursor: default;
+        }
+
+        .job.active .job-title {
+            cursor: pointer;
+        }
+
+        .job.active svg {
+            transform: rotate(180deg);
+        }
+
+        svg {
+            transition: transform 0.5s ease-in;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .custom-border {
+                border-right: 1px solid #000;
+            }
+        }
+
+        .additional-fields {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 1s ease-in-out;
+        }
+
+        .expanded {
+            max-height: 100%;
+        }
+
+        .up-arrow-btn {
+            cursor: pointer;
+            float: inline-end;
+            aspect-ratio: 1 / 1;
+        }
+
+        .up-arrow-btn:hover {
+            background-color: #007bff;
+            /* Change this to your desired color */
+            border-radius: 50%;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+
+        .error {
+            border-color: #ff0000 !important;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        .form-container {
+            margin-top: 50px;
+            border: 1px solid black;
+            width: 100%;
+            /* background-color: rgb(212, 212, 212); */
+            /* background: white; */
+            border-radius: 10px;
+            padding: 0 10px;
+            /* box-shadow: inset -5px -5px  black; */
+            /* filter: drop-shadow(5px 5px 5px #155175); */
+        }
+
+        .form-control {
+            /* background: #ffffff; */
+            filter: drop-shadow(2px 2px 2px);
+        }
+
+        .color-155175 {
+            color: #155175 !important;
+        }
+
+        .intern-button-a, .subscribe-btn-a, .job-apply-button-a{
+            text-decoration: none !important;
+            color: white !important;
+        }
+
+        a:hover {
+            color: black;
+        }
+
+        .form-title {
+            background-color: #155175;
+            color: white;
+            font-size: 2rem;
+            margin-top: 70px;
+            padding: 10px 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $('#header').load('header.html');
+
+        });
+        $(function () {
+            $('#footer').load('footer.html');
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <!-- for info part -->
+    <div class="container container-vacancy">
+        <div class="row pt-5">
+            <div class="col-12 col-md-6 my-auto">
+                <h1 class="color-155175">Internships and Vacancy</h1>
+                <p>Securing a meaningful internship opportunity is crucial for gaining practical experience and
+                    enhancing professional skills in a real-world setting.</p>
+                <button class="btn intern-button"><a href="#intern-vacancy" class="intern-button-a">Read More</a></button>
+            </div>
+            <div class="col-12 col-md-6 text-center">
+                <img class="intern-img" src="assets/img/intern.png" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- for info part end-->
+
+    <!-- <h1 class="text-center">Careers</h1> -->
+    <!-- for left section on bottom -->
+
+    <div class="row" id="intern-vacancy">
+
+        <div class="col-12 col-md-6 p-4 custom-border">
+            <section>
+
+                <h2 class="title">Internships</h2>
+                <p>Securing both jobs and internships is essential for fostering continuous professional growth,
+                    combining practical experience with employment opportunities to develop a well-rounded skill set.
+                </p>
+                <p>Fill out the form and experience with us the technical world more deeply. We will guide you to
+                    success.</p>
+
+                <!-- <div id="form" class="row  form-container text-center"> -->
+                <!-- <div class="col-3"></div> -->
+                <!-- for forms -->
+                <div class="col-12 form-container col-md-12">
+                    <div class="container mt-5">
+                        <h3 style="margin-bottom: 20px; margin-top: -40px; color: red;">Form ta bhar paila</h3>
+                        <form onsubmit="return validateForm()" id="dynamicForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Name" required
+                                    oninput="expandForm()">
+                            </div>
+
+                            <div class="additional-fields">
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="tel" class="form-control" placeholder="Phone Number" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <textarea class="form-control" placeholder="Address" rows="3" required></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <select class="form-select form-control" placeholder="Interested Field" required>
+                                        <option disabled selected>Select an option</option>
+                                        <option value="Web Development">Web Development</option>
+                                        <option value="Cyber">Cyber</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" accept=".jpg, .jpeg, .png, .pdf"
+                                            placeholder="" required>
+                                    </div>
+                                    <small class="form-text text-muted">Upload your CV (Allowed formats: JPG, JPEG, PNG,
+                                        PDF) </small>
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Academic Qualification"
+                                        required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="School/College" required>
+                                </div>
+                            </div>
+
+                            <i class="bi bi-arrow-up up-arrow-btn" onclick="closeForm()"></i>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                            <div id="error-msg" class="error error-message"></div>
+                        </form>
+                    </div>
+                </div>
+                <!-- form end -->
+
+                <!-- <div class="col-3"></div> -->
+                <!-- </div> -->
+
+            </section>
+        </div>
+
+        <!-- <div class="col-1"></div> -->
+
+        <!-- for right section on bottom -->
+
+        <div class="col-12 p-4 col-md-6">
+            <section>
+                <h2 class="title">Vacancy</h2>
+                <p>Explore exciting opportunities to contribute your skills and passion. Join our team and be a part of
+                    a dynamic workplace dedicated to innovation, collaboration, and professional growth.</p>
+
+                <div class="job">
+                    <div class="job-title">
+                        <h3>Web Developer</h3>
+                        <svg width="15" height="10" viewBox="0 0 42 25">
+                            <path d="M3 3L21 21L39 3" stroke="white" stroke-width="7" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="job-description">
+                        <div>
+                            <h4>Job Description:</h4>
+                            <p>We are seeking a skilled and creative Web Developer to join our dynamic team. The
+                                successful candidate will be responsible for designing, coding, and modifying websites,
+                                from layout to function, ensuring a seamless and visually appealing user experience. The
+                                Web Developer will collaborate with cross-functional teams to define and implement
+                                innovative solutions for our web presence.</p>
+                        </div>
+
+                        <div>
+                            <h4>Responsibilities:</h4>
+                            <ol>
+                                <li>Develop and maintain the front-end and back-end of websites.</li>
+                                <li>Collaborate with design and content teams to ensure the technical feasibility of
+                                    UI/UX designs.</li>
+                                <li>Optimize websites for maximum speed and scalability.</li>
+                                <li>Stay abreast of emerging technologies and industry trends to keep our web solutions
+                                    current and competitive.</li>
+                                <li>Troubleshoot and resolve website issues, bugs, and errors.</li>
+                                <li>Perform regular updates and maintenance to keep websites secure and up-to-date.</li>
+                                <li>Create and maintain documentation related to web development processes.</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <h4>Requirements:</h4>
+                            <ol>
+                                <li>Proven work experience as a Web Developer, with a strong portfolio of past projects.
+                                </li>
+                                <li>Proficient in HTML, CSS, JavaScript, PHP, and other relevant web development
+                                    languages.</li>
+                                <li>Experience with front-end frameworks such as React, Angular, or Vue.js.</li>
+                                <li>Familiarity with back-end technologies, such as Node.js or Python.</li>
+                                <li>Solid understanding of responsive design principles.</li>
+                                <li>Knowledge of web performance optimization and best practices.</li>
+                                <li>Strong problem-solving skills and attention to detail.</li>
+                                <li>Excellent collaboration and communication skills.</li>
+                                <li>Ability to work in a fast-paced, deadline-driven environment.</li>
+                                <li>Bachelor's degree in Computer Science, Web Development, or a related field.</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <h4>Preferred Qualifications:</h4>
+                            <ol>
+                                <li>Experience with version control systems (e.g., Git).</li>
+                                <li>Knowledge of web security best practices.</li>
+                                <li>Familiarity with content management systems (e.g., WordPress, Drupal).</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <p>If you possess the qualifications mentioned above, particularly in HTML, CSS, JavaScript,
+                                and PHP, and are enthusiastic about contributing to innovative web solutions, we
+                                encourage you to apply for this exciting opportunity. Join our team and be a key player
+                                in shaping the digital presence of our organization.</p>
+                        </div>
+                        <button class="job-apply-button btn btn-info"><a href="#form" class="job-apply-button-a">Apply Now</a></button>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-title">
+                        <h3>Software Engineer</h3>
+                        <svg width="15" height="10" viewBox="0 0 42 25">
+                            <path d="M3 3L21 21L39 3" stroke="white" stroke-width="7" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="job-description">
+                        <div>
+                            <h4>Job Description:</h4>
+                            <p>We are in search of a talented and motivated Software Engineer to join our innovative
+                                team. The selected candidate will play a crucial role in designing, developing, testing,
+                                and maintaining high-quality software solutions. Collaboration with cross-functional
+                                teams and a commitment to staying abreast of industry trends are essential for success
+                                in this role.</p>
+                        </div>
+
+                        <div>
+                            <h4>Responsibilities:</h4>
+                            <ol>
+                                <li>Design, develop, and maintain software applications.</li>
+                                <li>Collaborate with product managers and development teams to define software
+                                    requirements.</li>
+                                <li>Write clean, efficient, and well-documented code.</li>
+                                <li>Conduct thorough testing of software applications to ensure functionality and
+                                    performance.</li>
+                                <li>Stay updated on emerging technologies and industry best practices.</li>
+                                <li>Troubleshoot and debug software issues as they arise.</li>
+                                <li>Participate in code reviews to maintain code quality standards.</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <h4>Requirements:</h4>
+                            <ol>
+                                <li>Proven experience as a Software Engineer with a strong portfolio of past projects.
+                                </li>
+                                <li>Bachelor's or Master's degree in Computer Science, Software Engineering, or a
+                                    related field.</li>
+                                <li>Proficiency in programming languages such as Java, C++, or Python.</li>
+                                <li>Experience with software development methodologies and best practices.</li>
+                                <li>Knowledge of database management systems (e.g., MySQL, PostgreSQL).</li>
+                                <li>Strong problem-solving skills and attention to detail.</li>
+                                <li>Excellent collaboration and communication skills.</li>
+                                <li>Ability to work in a collaborative, agile development environment.</li>
+                                <li>Commitment to continuous learning and professional development.</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <h4>Preferred Qualifications:</h4>
+                            <ol>
+                                <li>Experience with front-end development technologies (HTML, CSS, JavaScript).</li>
+                                <li>Familiarity with version control systems (e.g., Git).</li>
+                                <li>Knowledge of cloud computing platforms (e.g., AWS, Azure).</li>
+                                <li>Understanding of software security best practices.</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <p>If you meet the qualifications mentioned above and are passionate about software
+                                development, we invite you to apply for this exciting Software Engineer opportunity.
+                                Join our team and contribute to building cutting-edge software solutions that make a
+                                positive impact.</p>
+                        </div>
+                        <button class="job-apply-button btn btn-info"><a href="#form" class="job-apply-button-a">Apply Now</a></button>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-title">
+                        <h3>UX/UI Designer</h3>
+                        <svg width="15" height="10" viewBox="0 0 42 25">
+                            <path d="M3 3L21 21L39 3" stroke="white" stroke-width="7" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="job-description">
+                        <div>
+                            <h4>Job Description:</h4>
+                            <p>We are looking for a creative and detail-oriented UX/UI Designer to join our dynamic
+                                team. The ideal candidate will be responsible for crafting visually appealing and
+                                intuitive user interfaces. Collaboration with cross-functional teams and a keen
+                                understanding of user-centric design principles are essential for success in this role.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h4>Responsibilities:</h4>
+                            <ol>
+                                <li>Collaborate with product managers and developers to understand project requirements.
+                                </li>
+                                <li>Create wireframes, prototypes, and user flows to effectively communicate design
+                                    ideas.</li>
+                                <li>Design and iterate on user interfaces based on user feedback and usability testing.
+                                </li>
+                                <li>Stay updated on design trends and industry best practices.</li>
+                                <li>Collaborate with development teams to ensure design feasibility and implementation.
+                                </li>
+                                <li>Conduct user research and usability testing to inform design decisions.</li>
+                                <li>Create and maintain design documentation for reference and collaboration.</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <h4>Requirements:</h4>
+                            <ol>
+                                <li>Proven experience as a UX/UI Designer with a strong portfolio showcasing design
+                                    projects.</li>
+                                <li>Bachelor's degree in Design, Human-Computer Interaction, or a related field.</li>
+                                <li>Proficiency in design tools such as Sketch, Adobe XD, Figma, or similar.</li>
+                                <li>Strong understanding of user-centered design principles.</li>
+                                <li>Excellent visual design skills and attention to detail.</li>
+                                <li>Ability to create wireframes, prototypes, and high-fidelity designs.</li>
+                                <li>Collaborative mindset with excellent communication skills.</li>
+                                <li>Ability to work in a fast-paced, iterative design process.</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <h4>Preferred Qualifications:</h4>
+                            <ol>
+                                <li>Experience with animation and interaction design.</li>
+                                <li>Knowledge of front-end development technologies (HTML, CSS, JavaScript).</li>
+                                <li>Experience with design systems and component libraries.</li>
+                                <li>Understanding of accessibility principles in design.</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <p>If you possess the qualifications mentioned above and are passionate about creating
+                                exceptional user experiences through design, we encourage you to apply for this exciting
+                                UX/UI Designer opportunity. Join our team and contribute to shaping user interfaces that
+                                positively impact our digital products.</p>
+                        </div>
+                        <button class="job-apply-button btn btn-info"><a href="#form" class="job-apply-button-a">Apply Now</a></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- right section ends here  -->
+    </div>
+    <div class="d-flex flex-column mx-5 text-center mt-5 justify-content-center">
+        <h2 class="form-title ">Subscribe</h2>
+        <p class=" text-center">Subscribe to our newsletter to never miss an update on the vancancy.</p>
+        <input type="email" class="m-auto" placeholder="Email">
+        <button class="btn btn-success mt-3 m-auto mb-5"><a href="" class="subscribe-btn-a">Subscribe</a></button>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-2"></div>
+        <div class="col-12 col-md-8">
+
+
+        </div>
+        <div class="col-12 col-md-2"></div>
+    </div>
+    <div id="footer"></div>
+    <script src="js/script.js">
+
+    </script>
+
+</body>
+
+</html>

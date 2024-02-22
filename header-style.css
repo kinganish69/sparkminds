@@ -1,0 +1,37 @@
+.container-navbar{
+   
+    
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-weight: 600;
+}
+
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+    
+}
+
+.navbar-toggler {
+    color: white;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.nav-link,
+.nav-item {
+    color: white;
+    margin-left: 10px;
+}
+
+.nav-item:hover,
+.nav-link:hover {
+    border-bottom: #04F186;
+    color: white !important;
+    text-decoration: underline #04F186;
+}
+
+
